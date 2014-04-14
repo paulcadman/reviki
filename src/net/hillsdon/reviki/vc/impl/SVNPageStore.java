@@ -34,7 +34,6 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
 import net.hillsdon.fij.io.LazyOutputStream;
 import net.hillsdon.fij.text.Strings;
 import net.hillsdon.reviki.vc.AlreadyLockedException;
@@ -278,6 +277,10 @@ public class SVNPageStore extends AbstractPageStore {
           else if (SVNErrorCode.FS_CONFLICT.equals(e.getErrorMessage().getErrorCode())) {
             throw new ConflictException(e);
           }
+          else if (SVNErrorCode.RA_NOT_LOCKED.equals(e.getErrorMessage().getErrorCode())) {
+            throw new LostLockException(e);
+          }
+          System.err.println(e.getErrorMessage().getErrorCode());
           throw e;
         }
       }

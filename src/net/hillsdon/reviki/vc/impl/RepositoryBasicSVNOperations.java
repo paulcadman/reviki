@@ -21,6 +21,7 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -233,9 +234,21 @@ public class RepositoryBasicSVNOperations implements BasicSVNOperations {
         try {
           repository.getFile(path, revision, props1, out);
           if(properties != null) {
-            final Map<String, SVNPropertyValue> props2= props1.asMap();
+            final Map<String, SVNPropertyValue> props2 = props1.asMap();
             for(Map.Entry<String, SVNPropertyValue> entry : props2.entrySet()) {
-              properties.put(entry.getKey(), entry.getValue().getString());
+              SVNPropertyValue val = entry.getValue();
+              if (val == null || val.isString()) {
+                properties.put(entry.getKey(), val.getString());
+              }
+              else if (val.isBinary()) {
+                try {
+                  properties.put(entry.getKey(), new String(val.getBytes(), "UTF-8"));
+                }
+                catch (UnsupportedEncodingException e) {
+                  throw new PageStoreException(e);
+                }
+              }
+              
             }
           }
         }
