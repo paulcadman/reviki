@@ -1,5 +1,5 @@
 language: java
 jdk:
   - oraclejdk7
-script: ant unit-tests functional-tests-external
+script: ant unit-tests
 after_success: ant release
