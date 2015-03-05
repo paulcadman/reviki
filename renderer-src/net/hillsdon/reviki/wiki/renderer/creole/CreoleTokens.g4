@@ -202,14 +202,15 @@ RawUrl : PROTOCOL (~(' '|'\t'|'\r'|'\n'|'|'|'['|']'|'"'|'/')+ '/'?)+ {doUrl();} 
 
 fragment PROTOCOL : ('http' 's'? | 'file' | 'ftp') '://' | 'file:/' | 'mailto:' ;
 
-Attachment : UPPER CAMEL '.' ALNUM+ ;
+Attachment : UPPER HYPHENCAMEL '.' ALNUM+ ;
 
-WikiWords : (UPPER (ABBR | CAMEL) REVISION? | INTERWIKI IWTARGET+) NOTALNUM {prior() == null || prior() != '.' && prior() != ':' && !Character.isLetterOrDigit(prior()) && !(last() == '.' && Character.isLetter(next()))}? {seek(-1);} ;
+WikiWords : (UPPER (ABBR | HYPHENCAMEL) REVISION? | INTERWIKI IWTARGET+) NOTALNUM {prior() == null || prior() != '.' && prior() != ':' && !Character.isLetterOrDigit(prior()) && !(last() == '.' && Character.isLetter(next()))}? {seek(-1);} ;
 
 fragment IWTARGET  : ALNUM (('.' | '-') ALNUM)? ;
 fragment INTERWIKI : ALPHA ALNUM+ ':' ;
 fragment ABBR      : UPPER UPPER+ ;
 fragment CAMEL     : (LOWNUM* UPNUM ALNUM* LOWER ALNUM* | ALNUM* LOWER ALNUM* UPNUM+) ;
+fragment HYPHENCAMEL    : CAMEL | (CAMEL ('-' | CAMEL)* CAMEL);
 fragment REVISION  : '?revision=' DIGIT+ ;
 
 /* ***** Macros ***** */

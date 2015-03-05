@@ -1,5 +1,15 @@
 [
   {
+    "name":   "plain WikiWord",
+    "input":  "WikiWord",
+    "output": "<p><a rel='nofollow' class='new-page' href='http://www.example.com/reviki/pages/test-wiki/WikiWord'>WikiWord</a></p>"
+  },
+  { 
+    "name":   "plain WikiWord hyphen",
+    "input":  "WikiWord-With-Hyphens",
+    "output": "<p><a rel='nofollow' class='new-page' href='http://www.example.com/reviki/pages/test-wiki/WikiWord-With-Hyphens'>WikiWord-With-Hyphens</a></p>"
+  },
+  {
     "name":   "URL vs inter-wiki link",
     "input":  "foo:1234",
     "output": "<p><a class='inter-wiki' href='http://www.example.com/foo/Wiki?1234'>foo:1234</a></p>"
@@ -33,6 +43,16 @@
     "name":   "Named link",
     "input":  "[[MyPage|My page]]",
     "output": "<p><a rel='nofollow' class='new-page' href='http://www.example.com/reviki/pages/test-wiki/MyPage'>My page</a></p>"
+  },
+  {
+    "name":   "Attachment link",
+    "input":  "[[MyPage/foo.txt]]",
+    "output": "<p><a class='attachment' href='http://www.example.com/reviki/pages/test-wiki/MyPage/attachments/foo.txt'>MyPage/foo.txt</a></p>"
+  },
+  {
+    "name":   "Attachment link hyphen",
+    "input":  "[[MyPage-With-Hyphens/foo.txt]]",
+    "output": "<p><a class='attachment' href='http://www.example.com/reviki/pages/test-wiki/MyPage-With-Hyphens/attachments/foo.txt'>MyPage-With-Hyphens/foo.txt</a></p>"
   },
   {
     "name":   "Named link in a table header with text either side",
@@ -148,6 +168,16 @@
     "name":   "No trailing punctuation in interwiki links #2",
     "input":  "foo:12.34-",
     "output": "<p><a class='inter-wiki' href='http://www.example.com/foo/Wiki?12.34'>foo:12.34</a>-</p>"
+  },
+  {
+    "name":   "No trailing hyphen in WikiWords",
+    "input":  "WikiWord-",
+    "output": "<p><a rel='nofollow' class='new-page' href='http://www.example.com/reviki/pages/test-wiki/WikiWord'>WikiWord</a>-</p>"
+  },
+  {
+    "name":   "No leading hyphen in WikiWords",
+    "input":  "-WikiWord",
+    "output": "<p>-<a rel='nofollow' class='new-page' href='http://www.example.com/reviki/pages/test-wiki/WikiWord'>WikiWord</a></p>"
   }
 ]
 
