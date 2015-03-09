@@ -129,7 +129,7 @@ public final class WikiWordUtils {
   }
 
   public static boolean isAcronym(final String pageName) {
-    return pageName != null && pageName.matches("\\p{Lu}(-?[\\p{Lu}\\d])*s?");
+    return pageName != null && pageName.matches("\\p{Lu}+s?");
   }
 
 }
