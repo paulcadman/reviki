@@ -208,9 +208,9 @@ WikiWords : (UPPER (ABBR | HYPHENCAMEL) REVISION? | INTERWIKI IWTARGET+) NOTALNU
 
 fragment IWTARGET  : ALNUM (('.' | '-') ALNUM)? ;
 fragment INTERWIKI : ALPHA ALNUM+ ':' ;
-fragment ABBR      : UPPER UPPER+ ;
+fragment ABBR      : UPPER (UPNUM | ('-' UPNUM))+ ;
 fragment CAMEL     : (LOWNUM* UPNUM ALNUM* LOWER ALNUM* | ALNUM* LOWER ALNUM* UPNUM+) ;
-fragment HYPHENCAMEL    : CAMEL | (CAMEL ('-' | CAMEL)* CAMEL);
+fragment HYPHENCAMEL    : CAMEL | (CAMEL ('-' CAMEL)+);
 fragment REVISION  : '?revision=' DIGIT+ ;
 
 /* ***** Macros ***** */

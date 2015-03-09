@@ -4,7 +4,7 @@
     "input":  "WikiWord",
     "output": "<p><a rel='nofollow' class='new-page' href='http://www.example.com/reviki/pages/test-wiki/WikiWord'>WikiWord</a></p>"
   },
-  { 
+  {
     "name":   "plain WikiWord hyphen",
     "input":  "WikiWord-With-Hyphens",
     "output": "<p><a rel='nofollow' class='new-page' href='http://www.example.com/reviki/pages/test-wiki/WikiWord-With-Hyphens'>WikiWord-With-Hyphens</a></p>"
