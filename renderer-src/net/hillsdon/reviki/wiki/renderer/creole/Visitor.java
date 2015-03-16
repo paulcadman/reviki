@@ -579,7 +579,7 @@ public class Visitor extends CreoleASTBuilder {
    */
   @Override
   public ASTNode visitTerseblockquote(TerseblockquoteContext ctx) {
-    return new Blockquote(visit(ctx.creole()));
+    return new Blockquote(visit(ctx.creoleinquote()));
   }
 
   /**

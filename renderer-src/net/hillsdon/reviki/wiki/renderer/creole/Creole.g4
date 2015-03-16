@@ -15,18 +15,21 @@ options {
 /* ***** Top level elements ***** */
 
 // A page consists of a sequence of block elements, separated by newlines.
-creole    : (block (LineBreak | ParBreak)*)* ;
+creole : (block (LineBreak | ParBreak)*)* ;
 
-block     : heading
-          | ulist | olist
-          | hrule
-          | table
-          | code | nowiki
-          | terseblockquote
-          | blockquote
-          | directive
-          | paragraph
-          ;
+creoleinquote : (blockinquote (LineBreak | ParBreak)*)* ;
+
+blockinquote  : heading
+              | ulist | olist
+              | hrule
+              | table
+              | code | nowiki
+              | blockquote
+              | directive
+              | paragraph
+              ;
+
+block : blockinquote | terseblockquote ;
 
 /* ***** Block Elements ***** */
 
@@ -92,7 +95,7 @@ inTable    : {disallowBreaks();} (ulist | olist | code | nowiki | inline) {unset
 
 nowiki     : NoWiki EndNoWikiBlock ;
 
-terseblockquote : TerseBlockquote creole TerseBlockquote ;
+terseblockquote : TerseBlockquote creoleinquote TerseBlockquote ;
 
 blockquote : BlockquoteSt creole BlockquoteEnd ;
 
